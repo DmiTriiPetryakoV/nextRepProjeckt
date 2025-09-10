@@ -1,0 +1,26 @@
+:root{
+    --bg-main:#f9f9f9;
+    --bg-card:#ffffff;
+    --border:#e5e7eb;
+    --text-main:#111827;
+    --text-muted:#6b7280;
+    --accent:#3b82f6;
+    --success:#10b981;
+    --danger:#ef4444;
+}
+html{
+  width:100%;
+  height:100%;
+}
+body{
+  width:100%;
+  height:100%;
+  margin:0;
+  background-color:var(--bg-main);
+  font-family:'Poppins',sans-serif;
+}
+#app{
+  width:100%;
+  height:100%;
+  overflow-x: hidden;
+}
