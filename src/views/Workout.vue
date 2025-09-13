@@ -15,16 +15,22 @@ router.back()
 
 
 <style scoped>
-#rep{
+#rep{   
     width:100%;
     height:100%;
     background-color:red;
     border:1px solid grey;
+    display:grid;
+    grid-auto-columns:repeat(3,1fr);
+    grid-template-rows:repeat(2,1fr);
 }
 #exitTren{
     width:7rem;
     height:3.5rem;
     border:1px solid grey;
     border-radius:1rem;
+    grid-column:1;
+    margin:1rem;
+
 }
 </style>

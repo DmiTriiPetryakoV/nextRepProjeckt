@@ -4,12 +4,22 @@
     <nav id="nav">
       <ul class="nav-links">
         <li><a href="">Тренировки</a></li>
-        <li><a href="">Прогресс</a></li>
+        <li><a href="">Статистика</a></li>
         <li><a href="">О сайте</a></li>
       </ul>
     </nav>
   </header>  
 </template>
+<script setup>
+import { useRouter } from 'vue-router'
+const router = useRouter();
+function goTo( path , event){
+    router.push(path)
+    //const parent = event.target.closest('#sectionTrek')
+    //if(parent) parent.remove()
+}
+</script>
+
 <style scoped>
 #header{
   width:100%;
@@ -78,26 +88,26 @@
 }
 @media (max-width:640px){
   .nav-links{
-    gap:2rem;
-    font-size:1rem;
+    gap:1.8rem;
+    font-size:0.95rem;
   }
       #nameApp{
-    font-size:1.8rem;
+    font-size:1.75rem;
   }
 }
 @media (max-width:440px){
   .nav-links{
     gap:0.75rem;
-    font-size:0.8rem;
+    font-size:0.75rem;
   }
 }
 @media (max-width:344px){
   .nav-links{
-    gap:0.7rem;
-    font-size:0.8rem;
+    gap:0.65em;
+    font-size:0.7rem;
   }
         #nameApp{
-    font-size:1.3rem;
+    font-size:1.2rem;
   }
 }
 

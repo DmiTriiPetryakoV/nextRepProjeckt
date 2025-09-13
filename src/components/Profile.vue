@@ -18,7 +18,9 @@
 
 </div>
 <div v-if="widthTabbar <=840" id="tabBar" >
-        <avatar class="avatar" @click="tooggleBoxProfile"> </avatar>
+        <avatar class="avatar" @click="addFoto"> 
+            <input type="file" ref="fileInput" accept="image" @change="previewImage" style="display:none"/>
+        </avatar>
         <div id="workout" class="icon"></div>
         <statistic id="tabBarStat" class="icon"></statistic> 
         <div id="tabBarSet" class="icon"></div>
@@ -27,6 +29,20 @@
 </template>
 <script setup>
 import { ref , watch , computed , onMounted, onBeforeMount} from 'vue'
+const fileInput = ref(null)
+const imageUrl = ref(null)
+const addFoto = () =>{
+    fileInput.value.click()
+}
+const previewImage = (event) =>{
+    const file = event.target.files[0]
+    if (!file) return;
+    imageUrl.value = URL.createObjectURL(file)
+}
+
+
+
+
 const widthWindow = ref(window.innerWidth)
 const widthTabbar = ref(window.innerWidth)
 
@@ -68,14 +84,14 @@ defineEmits(['toggle'])
     margin:1rem;
     border-radius:20px;
     display:grid;
-    grid-template-rows:40% 50% 10%;
+    grid-template-rows:40% 49% 11%;
     font-size:1.1rem;
     box-shadow:0px 2px 10px var(--text-muted);
 }
 #sectionProfileOne{
     display:grid;
     grid-template-rows:60% 40%;
-    grid-template-columns:60% 40%;
+    grid-template-columns:58% 42%;
 }
 #nameUser{
     grid-column:1;
@@ -117,7 +133,7 @@ defineEmits(['toggle'])
 .avatar{
     width:5rem;
     height:4rem;
-    background-image: url('fotoProfile.webp');
+    background-image: url('/fotoProfile.webp');
     border-radius:100%;
     grid-row:1;
     grid-column:1;
@@ -136,7 +152,7 @@ defineEmits(['toggle'])
     flex-direction:column;
     align-items:center;
     justify-items:center;
-    gap:6rem;
+    gap:15%;
     box-shadow:0px 2px 10px var(--text-muted);
 }
 #tabBar .avatar{
@@ -150,7 +166,7 @@ defineEmits(['toggle'])
     margin:1rem;
 }
 #tabBarStat{
-    background-image:url('stat.webp');
+    background-image:url('/stat.webp');
     display:flex;
     width:3.5rem;
     height:3.3rem;
@@ -159,7 +175,7 @@ defineEmits(['toggle'])
 }
 
 #tabBarSet{
-    background-image: url('settings.png');
+    background-image: url('/settings.png');
     display:flex;
     width:3.5rem;
     height:3.5rem;
@@ -167,7 +183,7 @@ defineEmits(['toggle'])
     transition:transform 1s ease;
 }
 #workout{
-    background-image: url('workaut.jpg');
+    background-image: url('/workaut.jpg');
     display:flex;
     width:4.2rem;
     height:4.2rem;

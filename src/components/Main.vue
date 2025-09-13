@@ -1,14 +1,14 @@
 <template>
     <div id="goga">
-        <router-view />
+        <router-view class="view"/>
         <div id="sectionTrek">
-            <div  id="sport" class="trek" @click="goToTren">
+            <div  id="sport" class="trek" @click="(e) => goTo('/Workout',e)">
                 <p>Тренировки</p>
             </div>
-            <div  id="sleep" class="trek">
+            <div  id="sleep" class="trek" @click="(e) => goTo('/Sleep',e)">
                <p>Сон</p>
             </div>
-            <div  id="eat" class="trek" @click="goToEat">
+            <div  id="eat" class="trek" @click="(e) => goTo('/Eat',e)">
                 <p>Еда</p>
             </div>
         </div>
@@ -22,15 +22,12 @@
 <script setup>
 import { useRouter } from 'vue-router'
 const router = useRouter();
-const goToTren = () =>{
-    router.push('/Workout')
+function goTo( path , event){
+    router.push(path)
+    //const parent = event.target.closest('#sectionTrek')
+    //if(parent) parent.remove()
 }
-const goToEat= () =>{
-    router.push('/Eat')
-}
-const goToSleep = () =>{
-    router.push('/Workout')
-}
+
 </script>
 <style scoped>
 #goga{
@@ -45,6 +42,12 @@ const goToSleep = () =>{
     place-items:center;
     margin-top:1rem;
     overflow:hidden;
+}
+.view{
+    grid-row:1;
+}
+.goga-row-one{
+    grid-template-rows:1;
 }
 #sectionTrek{
     width:90%;
@@ -111,6 +114,20 @@ p{
     }
     .trek{
         width:19rem;
+    }
+    #sectionTrek{
+        gap:4rem;
+    }
+}
+@media(max-width:640px){
+    #goga{
+        width:85%;
+        height:95%;
+        margin-left:3rem;
+    }
+    .trek{
+        width:90%;
+        height:65%;
     }
     #sectionTrek{
         gap:4rem;

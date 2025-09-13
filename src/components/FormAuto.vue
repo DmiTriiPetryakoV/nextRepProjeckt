@@ -2,10 +2,10 @@
 <div id="sectionForm">
     <form @submit.prevent="handleSubmit" id="form" >
         <h2>Вход</h2>
-        <input id="nameUser2" class="vvod" placeholder="Имя" maxlength="30" v-model="nameUser"/>
-        <input id="Login" class="vvod" placeholder="Логин" maxlength="15" v-model="Login"/>
-        <input id="height" class="vvod" placeholder="Рост" maxlength="4" v-model="heightUser"/>
-        <input id="weight" class="vvod" placeholder="Вес" maxlength="4" v-model="weightUser">
+        <input id="nameUser2" class="vvod" placeholder="Имя" maxlength="30" v-model="nameUser" ref="nameStyle"/>
+        <input id="Login" class="vvod" placeholder="Логин" maxlength="15" v-model="Login" ref="loginStyle"/>
+        <input id="height" class="vvod" placeholder="Рост" maxlength="4" v-model="heightUser" ref="heightStyle">
+        <input id="weight" class="vvod" placeholder="Вес" maxlength="4" v-model="weightUser" ref="weightStyle">
         <p v-if="errorMessage">{{ errorMessage }}</p>
        
         <button type="submit" id="avto"  >Авторизация</button>
@@ -20,27 +20,38 @@ const heightUser = ref('')
 const weightUser = ref('')
 const errorMessage = ref('')
 const emit = defineEmits(['auth-success'])
-
+const weightStyle = ref(null)
+const heightStyle = ref(null)
+const nameStyle = ref(null)
+const loginStyle = ref(null)
 function handleSubmit(){
     errorMessage.value = ''
  
 
 if(!nameUser.value.trim()){
     errorMessage.value = 'Введите ваше имя'
+    nameStyle.value.style.border = '2px solid red'
     return;
     }
 if(!Login.value.trim()){
     errorMessage.value = 'Введите логин'
+    loginStyle.value.style.border = '2px solid red'
     return;
     }
 if(heightUser.value.trim() && isNaN(+heightUser.value)){
     errorMessage.value = 'Рост должен быть числом'
-    return;
+    heightStyle.value.style.border = '2px solid red'
+    return;  
 }
 if(weightUser.value.trim() && isNaN(+weightUser.value)){
     errorMessage.value = 'Вес должен быть числом'
+    weightStyle.value.style.border = '2px solid red'
     return;
 }
+if(heightStyle.value) heightStyle.value.style.border = ''
+
+if(weightStyle.value) weightStyle.value.style.border = ''
+
     emit('set-user', {
         name:nameUser.value,
         height:heightUser.value,

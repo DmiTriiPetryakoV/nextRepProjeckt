@@ -1,9 +1,31 @@
 <template>
-    <div></div>
+    <div id="rep">
+        <button id="exitTren" @click="sleepBack">exit</button>   
+    </div>
+     
 </template>
-<script>
+<script setup>
+import { useRouter } from 'vue-router'
+const router = useRouter();
+const sleepBack= () => {
+
+router.back()
+}
 
 </script>
-<style scoped>
 
+
+<style scoped>
+#rep{
+    width:100%;
+    height:100%;
+    background-color:red;
+    border:1px solid grey;
+}
+#exitTren{
+    width:7rem;
+    height:3.5rem;
+    border:1px solid grey;
+    border-radius:1rem;
+}
 </style>
